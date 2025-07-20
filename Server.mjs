@@ -32,5 +32,5 @@ io.on("connection", socket => {
 });
 
 server.listen(5000, () => {
-  console.log("🚀 Signaling server running at http://localhost:5000");
+  console.log("🚀 Signaling server running at https://orbit-meet-4.onrender.com/");
 });
