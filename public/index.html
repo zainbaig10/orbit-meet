@@ -188,24 +188,53 @@
 </html> -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <title>Orbit Meet</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
+      video {
+        border: 2px solid #000;
+        margin: 10px;
+        border-radius: 10px;
+      }
+    </style>
   </head>
   <body>
-    <h3>Enter Room ID</h3>
+    <h2>Orbit Meet - Video Call</h2>
+    <p>Enter a room ID and share it with a friend to start a 1-on-1 call</p>
+
     <input id="roomInput" placeholder="Enter room name" />
     <button id="joinBtn">Join Room</button>
 
-    <br /><br />
-    <video id="localVideo" autoplay muted playsinline width="300"></video>
-    <video id="remoteVideo" autoplay playsinline width="300"></video>
+    <div style="margin-top: 20px">
+      <video
+        id="localVideo"
+        autoplay
+        muted
+        playsinline
+        width="320"
+        height="240"
+      ></video>
+      <video
+        id="remoteVideo"
+        autoplay
+        playsinline
+        width="320"
+        height="240"
+      ></video>
+    </div>
 
-    <!-- Socket.IO and SimplePeer CDN -->
+    <!-- CDN Libraries -->
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="https://unpkg.com/simple-peer@9.11.1/simplepeer.min.js"></script>
 
-    <!-- Your custom logic -->
-    <script type="module" src="script.js"></script>
+    <!-- App Logic -->
+    <script type="module" src="/script.js"></script>
   </body>
 </html>

@@ -51,8 +51,6 @@
 //   localVideo.srcObject = localStream;
 // }
 
-import { io } from "socket.io-client";
-
 const socket = io("https://orbit-meet-4.onrender.com/");
 let localStream, peer;
 let roomId = "";
@@ -65,8 +63,8 @@ joinBtn.addEventListener("click", async () => {
   roomId = document.getElementById("roomInput").value;
   if (!roomId) return alert("Enter room ID");
 
-  socket.emit("join", roomId);
-  await startLocalStream();
+  await startLocalStream(); // ✅ Ask for permission first
+  socket.emit("join", roomId); // ✅ Join after permission
 });
 
 socket.on("user-joined", async (peerId) => {
@@ -85,7 +83,7 @@ socket.on("signal", async ({ from, signal }) => {
 });
 
 function createPeer(initiator, peerId) {
-  peer = new window.SimplePeer({
+  peer = new SimplePeer({
     initiator,
     trickle: false,
     stream: localStream,
@@ -109,7 +107,10 @@ function createPeer(initiator, peerId) {
 
 async function startLocalStream() {
   try {
-    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    localStream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: true,
+    });
     localVideo.srcObject = localStream;
   } catch (error) {
     console.error("Media access error:", error);
