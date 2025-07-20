@@ -189,52 +189,51 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Orbit Meet</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding: 20px;
-      }
-      video {
-        border: 2px solid #000;
-        margin: 10px;
-        border-radius: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>Orbit Meet - Video Call</h2>
-    <p>Enter a room ID and share it with a friend to start a 1-on-1 call</p>
+<head>
+  <meta charset="UTF-8" />
+  <title>Orbit Meet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    video {
+      border: 2px solid #000;
+      margin: 10px;
+      border-radius: 10px;
+    }
+    .videos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Orbit Meet - Group Video Call</h2>
+  <p>Enter a room ID and share it with others to join the same call</p>
 
-    <input id="roomInput" placeholder="Enter room name" />
-    <button id="joinBtn">Join Room</button>
+  <input id="roomInput" placeholder="Enter room name" />
+  <button id="joinBtn">Join Room</button>
 
-    <div style="margin-top: 20px">
-      <video
-        id="localVideo"
-        autoplay
-        muted
-        playsinline
-        width="320"
-        height="240"
-      ></video>
-      <video
-        id="remoteVideo"
-        autoplay
-        playsinline
-        width="320"
-        height="240"
-      ></video>
-    </div>
+  <div style="margin-top: 20px;" class="videos">
+    <video id="localVideo" autoplay muted playsinline width="320" height="240"></video>
+    <div id="remoteVideos"></div>
+  </div>
 
-    <!-- CDN Libraries -->
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-    <script src="https://unpkg.com/simple-peer@9.11.1/simplepeer.min.js"></script>
+  <div style="margin-top: 20px;">
+    <button id="muteBtn">Mute Mic</button>
+    <button id="cameraBtn">Turn Off Camera</button>
+    <button id="screenBtn">Share Screen</button>
+    <button id="endCallBtn">End Call</button>
+  </div>
 
-    <!-- App Logic -->
-    <script type="module" src="/script.js"></script>
-  </body>
+  <!-- CDNs -->
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="https://unpkg.com/simple-peer@9.11.1/simplepeer.min.js"></script>
+
+  <!-- Script -->
+  <script type="module" src="/script.js"></script>
+</body>
 </html>
